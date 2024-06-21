@@ -32,7 +32,7 @@ class SpeechRecognizer: ObservableObject {
         print("Asking GPT")
         
             
-        
+        print(message)
          do {
             let chat: [ChatMessage] = [
                 ChatMessage(role: .system, content: "Your task is to take user input, and associate with a specific tag that best fits from the list of tags I give you. Do not deviate from the list, and if no matching tags are found, just respond with the error tag which is specified (#error). You must only respond with the tag and nothing else. A tag must be formatted to begin with a hashtag character which precedes the keyword. If the user gives an example of an object that is not the exact object, you must still give the relevant tags. For instance if someone says they are looking for the red door, you should give them the tag of #door \nAVAILABLE KEYWORDS: keys\ndoor\nwindow\ntrash_can\nlight_bulb\nphone\nmarker\ncharger"),

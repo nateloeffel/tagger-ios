@@ -1,1 +1,6 @@
 tagger-ios/Config.swift
+tagger-ios.xcodeproj/xcuserdata/krishsarin.xcuserdatad/xcschemes/xcschememanagement.plist
+tagger-ios.xcodeproj/project.xcworkspace/xcuserdata/krishsarin.xcuserdatad/UserInterfaceState.xcuserstate
+.gitignore
+.DS_Store
+tagger-ios.xcodeproj/project.pbxproj

@@ -40,7 +40,7 @@ struct ContentView: View {
         case "#marker":
             return "🖊️"
         case "#charger":
-            return "🛜"
+            return "🧑🏿‍🍳"
         // Add more cases as needed
         default:
             return "❓" // Default emoji if no match is found
@@ -72,25 +72,34 @@ struct ContentView: View {
                     .padding()
                 
                 Button(action: {
-                    if !isRecording {
-                        speechRecognizer.transcribe()
-                    } else {
-                        speechRecognizer.stopTranscribing()
-                    }
-                    
-                    isRecording.toggle()
-                }) {
-                    Text(isRecording ? "Stop" : "Record")
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(isRecording ? Color.red : Color.blue)
-                        .cornerRadius(10)
-                }
-                
-                Button(action: {
-                    speak("This is an example of text to speech.")
-                }) {Text("Speak")}
+                               if !isRecording {
+                                   speechRecognizer.transcribe()
+                               } else {
+                                   speechRecognizer.stopTranscribing()
+                               }
+                               
+                               isRecording.toggle()
+                           }) {
+                               Text(isRecording ? "Stop" : "Record")
+                                   .font(.largeTitle)
+                                   .foregroundColor(.white)
+                                   .padding()
+                                   .frame(width: 300, height: 100)
+                                   .background(isRecording ? Color.red : Color.blue)
+                                   .cornerRadius(20)
+                           }
+                           
+                           Button(action: {
+                               speak("This is an example of text to speech.")
+                           }) {
+                               Text("Speak")
+                                   .font(.largeTitle)
+                                   .foregroundColor(.white)
+                                   .padding()
+                                   .frame(width: 300, height: 100)
+                                   .background(Color.green)
+                                   .cornerRadius(20)
+                           }
             }
         }
 }
