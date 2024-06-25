@@ -41,67 +41,82 @@ struct ContentView: View {
             return "🖊️"
         case "#charger":
             return "🧑🏿‍🍳"
-        // Add more cases as needed
+            // Add more cases as needed
         default:
             return "❓" // Default emoji if no match is found
         }
     }
     
     func speak(_ words: String) {
-            
-            let audioSession = AVAudioSession() // 2) handle audio session first, before trying to read the text
-            do {
-                try audioSession.setCategory(.playback, mode: .default, options: .duckOthers)
-                try audioSession.setActive(false)
-            } catch let error {
-                print("❓", error.localizedDescription)
-            }
-            
-            speechSynthesizer = AVSpeechSynthesizer()
-            
-            let speechUtterance = AVSpeechUtterance(string: words)
-            speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-            
-            speechSynthesizer?.speak(speechUtterance)
-        }
-    
         
-        var body: some View {
-            VStack {
-                Text(handleResponse(speechRecognizer.gptResponse))
-                    .padding()
+        let audioSession = AVAudioSession() // 2) handle audio session first, before trying to read the text
+        
+        
+        do {
+            try audioSession.setCategory(.playback, mode: .default, options: .duckOthers)
+            try audioSession.setActive(false)
+        } catch let error {
+            print("❓", error.localizedDescription)
+        }
+        
+        speechSynthesizer = AVSpeechSynthesizer()
+        
+        let speechUtterance = AVSpeechUtterance(string: words)
+//        speechUtterance.prefersAssistiveTechnologySettings = true 
+        for voice in AVSpeechSynthesisVoice.speechVoices()
+        {
+            if voice.language == "en-US" {
                 
-                Button(action: {
-                               if !isRecording {
-                                   speechRecognizer.transcribe()
-                               } else {
-                                   speechRecognizer.stopTranscribing()
-                               }
-                               
-                               isRecording.toggle()
-                           }) {
-                               Text(isRecording ? "Stop" : "Record")
-                                   .font(.largeTitle)
-                                   .foregroundColor(.white)
-                                   .padding()
-                                   .frame(width: 300, height: 100)
-                                   .background(isRecording ? Color.red : Color.blue)
-                                   .cornerRadius(20)
-                           }
-                           
-                           Button(action: {
-                               speak("This is an example of text to speech.")
-                           }) {
-                               Text("Speak")
-                                   .font(.largeTitle)
-                                   .foregroundColor(.white)
-                                   .padding()
-                                   .frame(width: 300, height: 100)
-                                   .background(Color.green)
-                                   .cornerRadius(20)
-                           }
+                if voice.name == "Evan (Enhanced)" {
+                    print("FOUND VOICE")
+                    speechUtterance.voice = voice
+                }
+            }
+            
+            
+        }
+        
+        
+        speechSynthesizer?.speak(speechUtterance)
+    }
+    
+    
+    var body: some View {
+        VStack {
+            Text(handleResponse(speechRecognizer.gptResponse))
+                .padding()
+            
+            Button(action: {
+                if !isRecording {
+                    speechRecognizer.transcribe()
+                } else {
+                    speechRecognizer.stopTranscribing()
+                }
+                
+                isRecording.toggle()
+            }) {
+                Text(isRecording ? "Stop" : "Record")
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(width: 300, height: 100)
+                    .background(isRecording ? Color.red : Color.blue)
+                    .cornerRadius(20)
+            }
+            
+            Button(action: {
+                speak("This is an example of text to speech.")
+            }) {
+                Text("Speak")
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(width: 300, height: 100)
+                    .background(Color.green)
+                    .cornerRadius(20)
             }
         }
+    }
 }
 
 #Preview {
