@@ -288,7 +288,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tagger-ios/Preview Content\"";
-				DEVELOPMENT_TEAM = A4T899G88N;
+				DEVELOPMENT_TEAM = UDP82P6PUA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Using this to hear the person";
@@ -319,7 +319,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tagger-ios/Preview Content\"";
-				DEVELOPMENT_TEAM = A4T899G88N;
+				DEVELOPMENT_TEAM = UDP82P6PUA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Using this to hear the person";
