@@ -13,7 +13,6 @@ import OpenAIKit
 //tts
 import AVFoundation
 
-
 struct ContentView: View {
     
     @StateObject var speechRecognizer = SpeechRecognizer()
